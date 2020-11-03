@@ -9,30 +9,30 @@ import java.util.List;
 @Service
 public class ClientServiceImpl implements ClientService {
 
-    private final ClientRepository clientRepository;
+    private final ClientRepository currentRepository;
 
     @Autowired
-    public ClientServiceImpl(ClientRepository clientRepository) {
-        this.clientRepository = clientRepository;
-
+    public ClientServiceImpl(ClientRepository repository) {
+        this.currentRepository = repository;
     }
+
     @Override
     public Client get(Long id) {
-        return clientRepository.findById(id).orElse(null);
+        return currentRepository.findById(id).orElse(null);
     }
 
     @Override
     public List<Client> getAll() {
-        return clientRepository.findAll();
+        return currentRepository.findAll();
     }
 
     @Override
     public Client save(Client client) {
-        return clientRepository.save(client);
+        return currentRepository.save(client);
     }
 
     @Override
     public void delete(Long id) {
-        clientRepository.delete(id);
+        currentRepository.delete(id);
     }
 }

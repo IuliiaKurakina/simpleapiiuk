@@ -1,12 +1,13 @@
 package ru.mtuci.simpleapiiuk.model;
 
-        import lombok.AllArgsConstructor;
-        import lombok.Data;
-        import lombok.EqualsAndHashCode;
-        import lombok.NoArgsConstructor;
-        import javax.persistence.Entity;
-        import javax.validation.constraints.NotBlank;
-        import javax.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.Entity;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
@@ -24,4 +25,9 @@ public class Client extends AbstractBaseEntity {
     private String name;
     @NotBlank
     private String phone;
+
+    @Override
+    public String toString() {
+        return serial + " : '" + name + " " + surname + " [" + number + "] (" + phone + ')';
+    }
 }
