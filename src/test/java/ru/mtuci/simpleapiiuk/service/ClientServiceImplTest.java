@@ -24,7 +24,7 @@ class ClientServiceImplTest {
     @Test
     @Rollback(false)
     public void it_correctly_loads_client() {
-        Client expectedClient = new Client(1, "239", "Шляпа", "Ты", "355-55-15");
+        Client expectedClient = new Client(1, "4614", "Фамилия", "Имя", "79265558877");
         System.out.println(expectedClient);
         entityManager.persist(expectedClient);
         Client actualClient = repository.getOne(1L);
