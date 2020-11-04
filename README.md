@@ -32,3 +32,5 @@ curl SAVE http://localhost:8080/api/v1/clients
 curl POST http://localhost:8080/api/v1/{id}
 #### Получить hostname: 
 curl GET http://localhost:8080/api/v1/status  
+
+#### Банальный заголовок
