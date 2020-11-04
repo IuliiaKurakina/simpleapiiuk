@@ -16,11 +16,11 @@
 Запуск образа: docker run -p 8080:8080 myapi:latest / 1.0
 #### 4 curl (или больше) для обращения к ендпоинтам приложения:
 #### Получить список всех клиентов: 
-curl GET http://localhost:31317/api/v1/clients
+curl GET http://localhost:8080/api/v1/clients
 #### Получить запись по id: 
-curl GET http://localhost:31317/api/v1/clients/{id}
+curl GET http://localhost:8080/api/v1/clients/{id}
 #### Добавить новую запись: 
-curl SAVE http://localhost:31317/api/v1/clients 
+curl SAVE http://localhost:8080/api/v1/clients 
 {
 	"serial": 4005,
 	"number": "501578",
@@ -29,6 +29,6 @@ curl SAVE http://localhost:31317/api/v1/clients
 	"phone": "7903548878"
 }
 #### Удалить имеющуюся запись: 
-curl POST http://localhost:31317/api/v1/{id}
+curl POST http://localhost:8080/api/v1/{id}
 #### Получить hostname: 
-curl GET http://localhost:31317/api/v1/status
+curl GET http://localhost:8080/api/v1/status
