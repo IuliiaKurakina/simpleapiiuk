@@ -19,6 +19,8 @@ script:
   - ./mvnw clean install -B
 
 after_success:
+  - echo $DOCKER_USER
+  - echo $DOCKER_PASS
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
   - export TAG=`if [ "$TRAVIS_BRANCH" == "main" ]; then echo "latest"; else echo "$TRAVIS_BRANCH"; fi`
   - export IMAGE_NAME=35874569/my-docker-repo
