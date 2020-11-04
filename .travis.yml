@@ -2,34 +2,30 @@ dist: trusty
 jdk: oraclejdk8
 language: java
 services:
-  - postgresql
-  - docker
-
+- postgresql
+- docker
 before_install:
-  - chmod +x mvnw
-
+- chmod +x mvnw
 env:
   global:
-    - secure: "GAmcahhQvJBRMjDuF47O1c8rALQmBEHRwlMD4tsl7eLs6LthOTpv5kMUs/PlcFpaZnjDMRfEgVwKaEnkyngItbHiZgvI7q11LO1B1PrzrYMI9g7Gu/cwznVbsSnqRE0L0iw1XpQDk0Oyf3C7cz/HnPXQqTR1/b0vAPeKGtaFVUywSYgVxDST+NBGMfdgrcgOnZAvrrNwp8SJG2DCKrfismKKReTtSRX8WT+8Jkt0TkmA0okj9TOg6r2WZio02ytzn6vRCXKrlFdVJ17g05ZTZfaiGlT+BvCBoYGOWoZu6FfeydRxeK6odmTRtkBBvvc3GwA54DJBuh4nRcheuBhOV3qut3PGpNvQeAaqeekDCGty6hWBtyfyGGUY8AsUOvThMrLqqaZcMRPFKGIjZXjd91piFXffEBUU+P5wn/sQiH681fokRRPe+6iWc5ma7P3VMozAdLO4hgdm8PkOqFluOvg+msLl77g1qTRKNh82IdWEnT5Lovu2AgJh8wUUuc6pfO3gT55QVg0FQr1ICJJroor8bQTZgsB3n0aXeX1NPA+/DbpadRFkvETpFP5fAEoIG/mEbaKhZgqzsgIu39EqbSTITpO4n4THZL39Zb81iRJknrf7PjnJd7ULl8jHioLEI/ox1PgxJVpY+oonATzuvUTVgOg1NFzC/jgIaYb3Fzc="
-    - secure: "HCIibN/xrx/1ctAtkZLhd0G+nN0cC51yprb26Kd0mPQYlqKyruxBJ//JDcnIIKUItq8EQ2ayF8p1rXo4y9E4/5hwOGiPONU4HYoPdy/J/lrZiAq7chjAxgmWfie2+pUCHoXDFswncxpWvonf0Q144qRgehUHMR7Zsb1+h85Pf4AaZqoDd1YgqcCwcvfOQr5sOzI9du13U+OYVq1+0QVJ9JvL1J+MerFiovNBtfCNtCXYOVOXjLOEPXel095xaSwDDG5MHepZX5HVCvpKSp3MqvHNhn0kKbtfsh5emYhLiWmczUDD+CuxK/JFjFIsjlV1fXXIFIfH7l1N08UC5wg/Lr+v1qo8Kgzlj8H2u6C6bmLTpkED5GoQCZj85gT0jdFXQMxlAGzAngDGft0HOfQlLqQsd0xpN1TTDz29ogbkGNePbsxcY3y6GO57KzpYd6kUOXZYaMy9rnv/EV3UZ8EQ4LjdfjyqWGgPh7gq9BJIvPq8h6Dypp0bUieejxrOBtvF67u3zuw1kI/q9+miKz7/PBIl0FFH5LFcSxitXQfCNf6SIhPtmF4dUURO0TX75VC+2c9AUeFzolQulF7TsH2fKn52zG693qktIWETE8EqOyeNhDpIwmU/5QLZem5ePpduumN+ekZNkADA3mlAz7t10lTdsdtcwABsyTDrnm8JU/4="
-    - secure: "pXsUoZa5X75ZdSGc1eIu+yaoZWG9y3lEFFy5UYYUuvxHtlZ62BRQ1ZiR72/11lfFGZvx2T6WgD7n9jCI0aj0vwMH/endecypRWcbEA3kldDhz0Nw+TpKlJqWUFvi+ZdbYMzKvMu/WqN9zs/34FUMXsiYJ7vKebnvatKaKYNQH/ZoXjEAoslZAwjb171uLIjCCcZhMe+0lyD++yRXZo5nE+vMVUNu2EhngKGsKgdwDR0JWXXQ7IV/uKBW889lN3iSyYltwY9kwcc9O1SPJEsuYWtxLSdhyCSEa68l2QdEYxKWs05PrAXhIIpq+1VodFur+UzHhMNkas1LI3pLLYEx04oexvQyQ94AbeFJKQF7/4aCwU0qmTLAq+M5m7JcHkWqHd4CPExtdOgD8t150ukJuCkFlPQCMPLOPToYjXAQs/HwNffrXm9k9UGeQyi1nGQyx7tLMwXdUgfcrFBw1ywL6H+OR3ZztTaPryqcSZgxMDWPUUlk+1FOD0KH/7vmxFu5eJWk7o2NpQo5oAzWW1mnan2E5Do6z90Z6KGu/OvS7ErcJxs5+sG1RZC6zWXzPKjTA+xTORppUTnEtrLVp9oKJQrtu7TKEVNQHowxokKGoDdYxJbgBzbT+/28x3SDn6SsrjxPtk8GJBDahT+6/yJJQ7L92Cl5PJy0Nu/BHkoiXzk="
-    - COMMIT=${TRAVIS_COMMIT::7}
+  - secure: "OWV9/UnIYMHHdZLaxe/LANZhbhVZvuqhuN/I4WrCOTJISkv3nbLaw5vfAaUjjINVVm8tEETWebtgyPMhBGrHUOs+b+LVg8XpOWPAdvS0CyXZ2YjD1XvQpK/nmOW/W0iQ1fh8E1MEKFN7EUQqaHPe1nd8ySq+ZZbCylu8dsf6YLXLbLGfATQlPnfidoRTw5jGTUlr8EYxXdd+05opI8l7eEh2VCwq/NqNsnVLSWb2ZIaEJNzk2Cd3z+n/7baxW5xP17bYkDO63FBIyJP1QtNpmM8wjDnNl0gwBYINr5xAfJbFkHQXMtDBJwxip65gWdz3EObnvJg/1qllN8tB4anrVrM4OaP4tupjEON4HdUV3toKg8X/7k1oHJf/04nxdxaqgOhNviQqldv9QEXxLeWv/dwZMcEX++TYqCbkhSNR48reMX7kVkswH+g5DiEb96aUShyHzP2YtY/1jPxjKxeV0ODCDElmobQuSQaJyn6n4M2wLeP/yH8zh9UGPXr+m6n4d+5rddFBCnh2v0zLKH0KoTGDK9m9RJOssd2Rcbri+Avm4S4FyKAglDYm1DEvyOjXKhB5liaqieP0ARPf768iziXkGlmnR8N4GIzdKcse5ELoK2wqtORmsqASFn3HNaRUkjd09I3g4YWV6H5AQcFvaKKDwN+7opOLqOgNyUqk0xU="
+  - secure: "bD9uYz3Pa+chH5VwHSU6KrCrhScxE/C/DqaSPZ+lzPkDbj176f2tKMQhyYOLdFSp9NCfaS5kbXeWHTChpNeBzm3RMmB837Y+HhJBx4SP6mwZsutQJzHoSFFw80l839hg/efRbDrbeNxI/4neh6/XVhDhyYj2k7VLQ5glCxGU0WyIWBr45cv7eJFBVS8NTMa+ueRoIgjpWlxNhfsDI45VDJCCZPzzlCdJcdW3qsiD0TD5e0LDKgkT5uez3Ao38y+kIB7mmheY8SoNRDSXFSmn4DWxTRz+797sPXosnm7LPNQBrnMYaKsSkozwaM6SXm0UTnh4w8Kwn4OPaBM7C35e1j8mXqoqYdYFb2AFGxyUjiDnxd5O7Oq2BuAJ7oknff/jAv0ApdUIsfcv8W46c843mlhh/PmPhEZjj+etbu3pB5j29AIkNFXWlmWY9VIqtO23P61xSIXLV051xoKNos+EzqrZNE3QZIi+zqizp0SPMw3jwusLXAcjK2QeilV5XfEmrTm5kExlyEfmmAutjtRXX2w0Cc4aGPh1NA81IGlZLdxphWXTYJ1ooXujnlQXyCUgKmyUYmecZlr1yKCFGtdF/ScHHl1Yh/tqeHeze1WIgv3Ceb/+bLeBEtQeZKNbXcUJ1rOkOkwhDxMESJ0fgMv2Uuu2XTJXkSpmNJfktNadW90="
+  - secure: "fY0FdV4022ggWF+Fmoxp8rTVIjTWx+WrFPYYA9R5eBSsgCy+I/xnLnDH1tSZWJl7R0kHN6suBM61RTLgr5k0Vr0mrFXPLRAtpLA2oRbyl7j92LrY42WIQve13/nG0bBu3/yP87fzVmzc5hcRdtIPUa2qR3+bUAJqgDFX2NQdcpkUzO+EMUVw443HDq8gP0xS6olCd0FgV980B1ymLFunfew6kz+5dDEvrop3jKEvkglArP7f5clSv1ecvJ7FGXMo1nOez47p/v11eb7r4akBGC+2x34G8BMOFt750nFVLTAmXmszLtN5UoUdXl8DLRBxckJVg9ouSR2w2gKmc/QYFiYQ520GCcnArAnyqxX3u0fLvi12dgsbcL8hKpj2EQMqOv/SBBYLryq+y5u0mWx/JPB9lIxLwDsQ5964YQUjUyVOEK7u2Q/Ax3ohzywe+zncZKnfiC99YghtDiViGqJtM12ifeADSKewEYzVbgC/hPKMBGQv2aXZXe91UccdQoebWrYtpsmpAvxD/tYMXNM3IXcMDMos+k14TQCFZUp9Nn2TD+a3ivzsdLVyObvhBboLXMJi6z0qXv+vJt8ktht3+uckRqSaNtk5mf0xwwxj9pO8tXSINgHfclhI0W/XiNMZ0b9ixGvEuccXBjbjPDbpl5AKIhgXYS7F3FWSSJPx/SA="
+  - COMMIT=${TRAVIS_COMMIT::7}
 
 script:
-  - ./mvnw clean install -B
-
+- "./mvnw clean install -B"
 after_success:
-  - echo $DOCKER_USER
-  - echo $DOCKER_PASS
-  - docker login -u $DOCKER_USER -p $DOCKER_PASS
-  - export TAG=`if [ "$TRAVIS_BRANCH" == "main" ]; then echo "latest"; else echo "$TRAVIS_BRANCH"; fi`
-  - export IMAGE_NAME=35874569/my-docker-repo
-  - docker build -t $IMAGE_NAME:latest .
-  - docker tag $IMAGE_NAME:latest $IMAGE_NAME:$TAG
-  - docker push $IMAGE_NAME:$TAG
-
+- echo $DOCKER_USER
+- echo $DOCKER_PASS
+- docker login -u $DOCKER_USER -p $DOCKER_PASS
+- export TAG=`if [ "$TRAVIS_BRANCH" == "main" ]; then echo "latest"; else echo "$TRAVIS_BRANCH";
+  fi`
+- export IMAGE_NAME=35874569/my-docker-repo
+- docker build -t $IMAGE_NAME:latest .
+- docker tag $IMAGE_NAME:latest $IMAGE_NAME:$TAG
+- docker push $IMAGE_NAME:$TAG
 deploy:
   provider: heroku
-  api_key: $HEROKU_API_KEY
+  api_key: "$HEROKU_API_KEY"
   app: simpleapiiuk
-
