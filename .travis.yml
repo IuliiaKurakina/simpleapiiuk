@@ -25,5 +25,5 @@ after_success:
   - docker push $IMAGE_NAME:$TAG
 deploy:
   provider: heroku
-  api_key: "$HEROKU_API_KEY"
+  api_key: $HEROKU_API_KEY
   app: simpleapiiuk
