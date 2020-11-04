@@ -1,14 +1,14 @@
 package ru.mtuci.simpleapiiuk.controller;
 
-        import lombok.extern.slf4j.Slf4j;
-        import org.springframework.http.MediaType;
-        import org.springframework.web.bind.annotation.GetMapping;
-        import org.springframework.web.bind.annotation.RequestMapping;
-        import org.springframework.web.bind.annotation.RestController;
-        import ru.mtuci.simpleapiiuk.dto.Status;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import ru.mtuci.simpleapiiuk.dto.Status;
 
-        import java.net.InetAddress;
-        import java.net.UnknownHostException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 @Slf4j
 @RestController
