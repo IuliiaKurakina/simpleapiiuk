@@ -8,27 +8,5 @@ services:
 before_install:
   - chmod +x mvnw
 
-env:
-  global:
-    - secure: "pXxSuvcL1vfp3doAtnCa7Zzq+JzH1ZSxp/LtsE0j/sDY4G37jMwiqzMR5PBKKCXZGd35odxtXi50XI0RMIvk1jwt6KquDYtxfxkPF3hq33YHV/spCCjMYIH5zJIABBJsDlIzmfhfEM0LD6jjdbgVj/x1irEaQadhRnAqYExVKZftmmdQr91QWlbl5mrcYvxefBpz0Cx8zheQ0G/OsMBq5SPggl5IhLV0Yt6PkwSISLqLrsbA0XGo3eSaY+BqmWFFeLVfZ6GZFRs7QDm02PSdt7HJWa7HvpqM5vuIvgQaiINgq/QcnkqcrN4BJQUqenomRoRlxzfd4at/lgtd4dT5WMtOao5tHNwacn5faSmKxjL93XfJzT2CsFcD7pKWbymOXqKdGLEZsuusXlPI8SHYTU6UT8KqucDyGPHNawoutPPN+toCjrs9TThTopRhCxnRfGcRGE1Be7SLJSK+Dn7nBNhuZSI1mPoTG0PJu8/2HbwlKRbB858hyRGZQU0yjc6kYjgBjUnmeykWEF1EHQeoF84NjOxICiy9nT08VJSgvb4Kqe9SG23fLeLp2XkVSKrhHPwoJ8jrMpv1pk1G2L1PDTrkyDRUCL5N59EpYexifpx4IUTTaFKE6xtgnQfwJ8WRA/qYZu3NOe+4nrg1mITL5g7dEjXANytl/oLN9ISytb0="
-    - secure: "QWBUpZ0mm1atyLY7M94j4cEUdhaibyCu+efa7rekxT2FNHss5HgxVgcmms1obOjHhj9r0jzAgjJKHkBw/BnKtEAs5vBPYsD55DhUlS1cwRLpTGiU5EEd2lEjzz+VWssWPNtvMWRul7vMVvN6pVk2DGHug2jfhoGXlzyEMbTjSZ8SMBYrtnoLumy0vr70R1QLkiNtvdusZn7nh82lwizYCajn6WiRZFKXuVCJ6vsf4KteDQNaR1dtnFIf9x2YunSVF9eeepyPu1JAgb4A2/dwd7vITknTmcir/CIegvUIYkB9zRIfHMOCdybxpkEY0VBNQ8Q7N/udnS2DRWFg2EzK3azm4220OWQigdgzYNvVdQsdkQaXU0pENFP85iouzAqnolig5YQEQJVYIi9SEt5x3V3wVMT92UWnDOV0cWl+Mp+MQDN2gHeCQgl8wTbbzd1CSx8qvi4TiGiUlQMqkBBCeKB8kyIpASLzwsLzaONMv+ZjjFCbvIoZlF0sjw7+DOZowTxeP42bAvVkHvs7ZqSMzJPpp8iw1zWx32NHkQ4etZmnPsRDtikE14rBRpnwpXBEftrUzvy6Ctlm7Cm4vcLqoEemySn43jfXzQj4pkLpuDTwAAIPwYpgIIHOjtJ0y1QttWFgXV2uX5X331sxCxT6JifDx67kAiNnGlknM6ANIik="
-    - secure: "GcJOK7B7/hI4DObbvEX3rJcTQs3T8hr8G/PrdrbpwGhZSHaj0GCEr6TxsBrTrssmMNkxeuogO2DdZgJiaJfVTRYvWkTjbTH0ybBvjgSNgNhsyXgIeQgigU82MvgSmU7u7s9BK/fKozbEx8wXtkn7jT8MuipXVGiKwtHt338Ngyj5dDTmVLKE3KwidZh6Zl+DIx1tnOlkL/fBsz+Us5ol81EQgsI2SrShugt85VeRnLQL5OdWfDI0EHm5WgBjY6tTW2YwVVa4nQX1naMv0K8mIkk3yubBcBIN8OJbT8LmzbzY6pkFM+sAvPh2Ex1jCyfey0HcKQLLgeEGYtKYzlxOVi/UT3LRYRQY6EPkHmHpkgbCqMsNFpQncPiO2bgnQeCugN5JgVtMIztUpAr6/y70FoNFPV12dXmxubiQn3uPIeEIrfZQulx0nRJ6xa9Kuwp7ApkLrKNVzl5IK8JSYI5xFnjBJbhMC3y2NWhr3S8peq9uish2KgfU3jaR7lN5kqWCM5Kqp0SReVoK79RZI0AmGD5lYE+nZBC6yLRB7Vkxq7bgFsd/BpaAg64pQDJB2U2wTMYoOrL5prlqCT9l7aP3ToXXDSdLj4MBtuTDN8v5rP+oXHJ4kwBxoejQPg6YKeSOHxfMT5AoRWRrfY7p75mE02celMVc10d1IdaWmcoyjQ8="
-    - COMMIT=${TRAVIS_COMMIT::7}
 
-script:
-  - ./mvnw clean install -B
-
-after_success:
-  - docker login -u $DOCKER_USER -p $DOCKER_PASS
-  - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo "$TRAVIS_BRANCH"; fi`
-  - export IMAGE_NAME=myapi/my-docker-repo
-  - docker build -t $IMAGE_NAME:latest .
-  - docker tag $IMAGE_NAME:latest $IMAGE_NAME:$TAG
-  - docker push $IMAGE_NAME:$TAG
-
-
-deploy:
-  provider: heroku
-  api_key: $HEROKU_API_KEY
-  app: simpleapiiuk
 
