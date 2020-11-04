@@ -17,7 +17,7 @@ script:
   - "./mvnw clean install -B"
 after_success:
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
-  - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo "$TRAVIS_BRANCH";
+  - export TAG=`if [ "$TRAVIS_BRANCH" == "main" ]; then echo "latest"; else echo "$TRAVIS_BRANCH";
     fi`
   - export IMAGE_NAME=35874569/my-docker-repo
   - docker build -t $IMAGE_NAME:latest .
@@ -26,4 +26,6 @@ after_success:
 deploy:
   provider: heroku
   api_key: $HEROKU_API_KEY
-  app: simpleapiiuk
+    app: simpleapiiuk
+    on:
+      branch: main
