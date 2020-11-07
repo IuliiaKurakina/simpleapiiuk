@@ -11,6 +11,7 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+//@Entity
 public abstract class AbstractBaseEntity {
     public static final int START_SEQ = 1;
 

@@ -4,16 +4,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import ru.mtuci.simpleapiiuk.model.Client;
+import ru.mtuci.simpleapiiuk.model.Deposit;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
-
 @Transactional(readOnly = true)
-public interface ClientRepository extends JpaRepository<Client, Long> {
+public interface DepositRepository extends JpaRepository<Deposit, Long> {
     @Transactional
     @Modifying
-    @Query("DELETE FROM Client c WHERE c.id=:id")
+    @Query("DELETE FROM Deposit d WHERE d.id=:id")
     int delete(@Param("id") Long id);
-
 }
