@@ -48,4 +48,4 @@
 	]
 }
 ```
-![Пример запроса в Insomnia](https://drive.google.com/drive/folders/1hO3hkDz8sVtnm3IPv-ZMsbI93jKhiI5y?usp=sharing)
+[Пример запроса в Insomnia](https://drive.google.com/drive/folders/1hO3hkDz8sVtnm3IPv-ZMsbI93jKhiI5y?usp=sharing)
