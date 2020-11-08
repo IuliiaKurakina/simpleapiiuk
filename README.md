@@ -17,13 +17,13 @@
 1. Получить список всех клиентов: curl GET http://localhost:8080/api/v1/clients
 2. Получить запись по id: curl GET http://localhost:8080/api/v1/clients/{id}
 3. Добавить новую запись: curl POST http://localhost:8080/api/v1/clients 
-{
+'{
 	"serial": 4005,
 	"number": "501578",
 	"surname": "Ковалева",
 	"name": "Алёна",
 	"phone": "7903548878"
-}
+}'
 4. Удалить имеющуюся запись: curl DELETE http://localhost:8080/api/v1/{id}
 5. Получить hostname: curl GET http://localhost:8080/api/v1/status 
  
