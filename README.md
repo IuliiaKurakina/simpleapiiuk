@@ -2,7 +2,7 @@
 ## Лабораторная работа №2: создание кластера Kubernetes и деплой приложения.
 ## Куракина Юлия Владимировна МАС2031 
 ### Цель лабораторной работы:
-Pнакомство с кластерной архитектурой на примере Kubernetes, а также деплоем приложения в кластер.
+Знакомство с кластерной архитектурой на примере Kubernetes, а также деплоем приложения в кластер.
 
 Прикрепляю небольшой видеообзор + скриншоты:
-[] (https://drive.google.com/drive/folders/1hO3hkDz8sVtnm3IPv-ZMsbI93jKhiI5y?usp=sharing)
+(https://drive.google.com/drive/folders/1hO3hkDz8sVtnm3IPv-ZMsbI93jKhiI5y?usp=sharing)
