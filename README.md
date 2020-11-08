@@ -48,6 +48,4 @@
 	]
 }
 ```
-![Пример запроса в Insomnia 1](https://drive.google.com/file/d/1sknV9-FtlwJsoWUp53ICEGIJDRry_Hdu/view?usp=sharing)
-![Пример запроса в Insomnia 2](https://drive.google.com/file/d/1Iu-ESf0ILv84iZcRspAr0I0G3Y3SUvEX/view?usp=sharing)
-![Пример запроса в Insomnia 3](https://drive.google.com/file/d/1duvexm3M1wbAmgqzOCjZ80gS2D6zOKua/view?usp=sharing)
+![Пример запроса в Insomnia](https://drive.google.com/drive/folders/1hO3hkDz8sVtnm3IPv-ZMsbI93jKhiI5y?usp=sharing)
