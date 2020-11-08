@@ -1,5 +1,8 @@
 package ru.mtuci.simpleapiiuk.model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -8,10 +11,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-//@Data
-//@NoArgsConstructor
-//@AllArgsConstructor
-//@EqualsAndHashCode(callSuper = true)
 public class Client {
     public static final int START_SEQ = 1;
 
@@ -43,6 +42,7 @@ public class Client {
             mappedBy = "client",
             cascade = CascadeType.ALL
     )
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Set<Account> accounts = new HashSet<>();
 
     public Date getDate_of_birth() {
@@ -91,68 +91,19 @@ public class Client {
 
     public void setAccounts(Set<Account> accounts) {
         this.accounts = accounts;
-
         for (Account a : accounts) {
             a.setClient(this);
         }
     }
 
-//    public Set<Client> getClients() {
-//        return clients;
-//    }
 
-//    public void setClients(Set<Client> clients) {
-//        this.clients = clients;
-//
-//        for(Client c : clients) {
-//            c.setClients((Set<Client>) this);
-//        }
-//    }
-
-    @Override
-    public String toString() {
-        return date_of_birth + " : '" + name + " " + surname + " [" + passport + "] (" + phone + ')'; //
-    }
 }
+//
+//        @Override
+//        public String toString () {
+//            return date_of_birth + " : '" + name + " " + surname + " [" + passport + "] (" + phone + ')'; //
+//        }
 
 
-//@OneToMany(
-//        cascade = CascadeType.ALL,
-//        orphanRemoval = true
-//)
-//    private List<Account> accounts = new ArrayList<>();
-//    @Entity
-//    public class Account {
-//        @Id
-//        @GeneratedValue(strategy = GenerationType.IDENTITY)
-//        private int id;
-//
-//        @NotNull
-//        private String name;
-//
-//        @ManyToOne(fetch = FetchType.LAZY, optional = false)
-//        @JoinColumn(name = "client_id")
-//        @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-//        private Client client;
-//
-//        public int getId() {
-//            return id;
-//        }
-//        public void setId(int id) {
-//            this.id = id;
-//        }
-//        public String getName() {
-//            return name;
-//        }
-//        public void setName(String name) {
-//            this.name = name;
-//        }
-//        public Client getClient() {
-//            return client;
-//        }
-//        public void setClient(Client client) {
-//            this.client = client;
-//        }
-//    }
 
 

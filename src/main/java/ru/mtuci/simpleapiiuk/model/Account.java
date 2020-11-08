@@ -2,27 +2,36 @@ package ru.mtuci.simpleapiiuk.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode(callSuper = true)
-public class Account extends AbstractBaseEntity { //?
-    //@NotNull
+
+public class Account {
+    public static final int START_SEQ = 1;
+
+    @Id
+    @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = 1, initialValue = START_SEQ)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_seq")
+    private Long id;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @NotNull
     private Date opening_date;
-    //@NotNull
+    @NotNull
     private Integer deposit_amount;
 
     @ManyToOne(
@@ -33,6 +42,13 @@ public class Account extends AbstractBaseEntity { //?
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Client client;
 
+    @OneToMany(
+            mappedBy = "account",
+            cascade = CascadeType.ALL
+    )
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Set<Deposit> deposits = new HashSet<>();
+
     public Client getClient() {
         return client;
     }
@@ -41,13 +57,30 @@ public class Account extends AbstractBaseEntity { //?
         this.client = client;
     }
 
-//    @Override
-//    public String toString() {
-//        return serial + " : '" + name + " " + surname + " [" + number + "] (" + phone + ')';
-// client_id, deposit_id, opening_date, deposit_amount   }
-// accounts_id INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-//    client_id   INTEGER REFERENCES  client (id),
-//    deposit_id INTEGER   REFERENCES deposit (deposit_id),
-//    date_closing DATE NOT NULL,
-//    amount INTEGER NOT NULL
+    public Set<Deposit> getDeposits() {
+        return deposits;
+    }
+
+    public void setDeposits(Set<Deposit> deposits) {
+        this.deposits = deposits;
+        for (Deposit d : deposits) {
+            d.setAccount(this);
+        }
+    }
+
+    public Date getOpening_date() {
+        return opening_date;
+    }
+
+    public void setOpening_date(Date opening_date) {
+        this.opening_date = opening_date;
+    }
+
+    public Integer getDeposit_amount() {
+        return deposit_amount;
+    }
+
+    public void setDeposit_amount(Integer deposit_amount) {
+        this.deposit_amount = deposit_amount;
+    }
 }

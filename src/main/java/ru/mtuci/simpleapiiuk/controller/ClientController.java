@@ -8,13 +8,14 @@ import org.springframework.web.bind.annotation.*;
 import ru.mtuci.simpleapiiuk.model.Client;
 import ru.mtuci.simpleapiiuk.service.AccountService;
 import ru.mtuci.simpleapiiuk.service.ClientService;
+//import ru.mtuci.simpleapiiuk.service.DepositService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
 
 import java.util.List;
 import javax.validation.Valid;
 import java.net.URI;
-
 
 @Slf4j
 @RestController
@@ -24,12 +25,14 @@ public class ClientController {
 
     private final ClientService clientService;
     private final AccountService accountService;
+//    private final DepositService depositService;
 
     @Autowired
-    public ClientController(ClientService clientService, AccountService accountService) {
+    public ClientController(ClientService clientService, AccountService accountService) { //, DepositService depositService
         this.clientService = clientService;
         this.accountService = accountService;
-    }
+//        this.depositService = depositService;
+      }
 
     @GetMapping(value = "/{id}")
     public Client get(@PathVariable("id") Long id) {
@@ -42,11 +45,6 @@ public class ClientController {
         log.info("getAll");
         return clientService.getAll();
     }
-//    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-//    public Client save(@RequestBody Client client) {
-//        log.info("save" + client);
-//        return clientService.save(client);
-//    }
 
     @PostMapping
     public ResponseEntity<Client> create(@Valid @RequestBody Client client) {
@@ -62,62 +60,6 @@ public class ClientController {
     public void delete(@PathVariable("id") Long id) {
         log.info("delete" + id);
         clientService.delete(id);
+        System.out.println("Delete!" + id);
     }
-
-//    private final ClientRepository clientRepository;
-//    private final AccountRepository accountRepository;
-//
-//    @Autowired
-//    public ClientController(ClientRepository clientRepository, AccountRepository accountRepository) {
-//        this.clientRepository = clientRepository;
-//        this.accountRepository = accountRepository;
-//    }
-//    @PostMapping
-//    public ResponseEntity<Client> create(@Valid @RequestBody Client client) {
-//        Client savedClient = ClientRepository.save(client);
-//        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-//                .buildAndExpand(savedClient.getId()).toUri();
-//        return ResponseEntity.created(location).body(savedClient);
-//    }
-//    @PutMapping("/{id}")
-//    public ResponseEntity<Client> update(@PathVariable Long id, @Valid @RequestBody Client client) {
-//        Optional<Client> optionalClient = clientRepository.findById(id);
-//        if (!optionalClient.isPresent()) {
-//            return ResponseEntity.unprocessableEntity().build();
-//        }
-//        Client.setId(optionalClient.get().getId(id));
-//        clientRepository.save(client);
-//        return ResponseEntity.noContent().build();
-//    }
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<Client> delete(@PathVariable Long id) {
-//        Optional<Client> optionalClient = clientRepository.findById(id);
-//        if (!optionalClient.isPresent()) {
-//            return ResponseEntity.unprocessableEntity().build();
-//        }
-//        clientRepository.delete(optionalClient.get());
-//        return ResponseEntity.noContent().build();
-//    }
-//    @GetMapping("/{id}")
-//    public ResponseEntity<Client> getById(@PathVariable Long id) {
-//        Optional<Client> optionalClient = clientRepository.findById(id);
-//        if (optionalClient.isPresent()) {
-//            return ResponseEntity.unprocessableEntity().build();
-//        }
-//        return ResponseEntity.ok(optionalClient.get());
-//    }
-//    @GetMapping
-//    public ResponseEntity<Page<Client>> getAll(Pageable pageable) {
-//        return ResponseEntity.ok(clientRepository.findAll(pageable));
-//    }
-
-//    @GetMapping(value = "/{id}")
-//    public ResponseEntity<Client> get(@PathVariable("id") Long id) {
-//        Optional<Client> optionalClient = clientService.get(id);
-//        if (!optionalClient.isPresent()) {
-//            return ResponseEntity.unprocessableEntity().build();
-//        }
-//
-//        return ResponseEntity.ok(optionalClient.get());
-//    }
 }
