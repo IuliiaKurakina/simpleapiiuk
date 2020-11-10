@@ -49,3 +49,15 @@
 }
 ```
 [Пример запроса в Insomnia](https://drive.google.com/drive/folders/1hO3hkDz8sVtnm3IPv-ZMsbI93jKhiI5y?usp=sharing)
+
+Знакомство с CI/CD и его реализацией на примере Travis CI и Heroku. Ссылка на приложение:
+1. Получить все записи:
+- curl GET https://simpleapiiuk.herokuapp.com/api/v1/clients
+- curl GET https://simpleapiiuk.herokuapp.com/api/v1/accounts
+- curl GET https://simpleapiiuk.herokuapp.com/api/v1/deposits
+2. Получить запись по id:
+- curl GET https://simpleapiiuk.herokuapp.com/api/v1/clients/209
+- curl GET https://simpleapiiuk.herokuapp.com/api/v1/accounts/210
+- curl GET https://simpleapiiuk.herokuapp.com/api/v1/deposits/211
+3. Получить hostname:
+- curl GET https://simpleapiiuk.herokuapp.com/api/v1/status
