@@ -61,3 +61,6 @@
 - curl GET https://simpleapiiuk.herokuapp.com/api/v1/deposits/211
 3. Получить hostname:
 - curl GET https://simpleapiiuk.herokuapp.com/api/v1/status
+
+
+[![Build Status](https://travis-ci.com/IuliiaKurakina/simpleapiiuk.svg?branch=hard)
