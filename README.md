@@ -63,4 +63,4 @@
 - curl GET https://simpleapiiuk.herokuapp.com/api/v1/status
 
 
-[![Build Status](https://travis-ci.com/IuliiaKurakina/simpleapiiuk.svg?branch=hard)
+![Build Status](https://travis-ci.com/IuliiaKurakina/simpleapiiuk.svg?branch=hard)
