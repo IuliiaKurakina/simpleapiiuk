@@ -7,13 +7,10 @@ import org.springframework.data.repository.query.Param;
 import ru.mtuci.simpleapiiuk.model.Client;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
-
 @Transactional(readOnly = true)
 public interface ClientRepository extends JpaRepository<Client, Long> {
     @Transactional
     @Modifying
     @Query("DELETE FROM Client c WHERE c.id=:id")
     int delete(@Param("id") Long id);
-
 }

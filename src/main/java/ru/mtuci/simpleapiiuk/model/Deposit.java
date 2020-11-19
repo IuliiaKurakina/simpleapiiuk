@@ -12,8 +12,8 @@ public class Deposit {
     public static final int START_SEQ = 1;
 
     @Id
-    @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = 1, initialValue = START_SEQ)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_seq")
+    @SequenceGenerator(name = "deposit_seq", sequenceName = "deposit_seq", allocationSize = 1, initialValue = START_SEQ)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "deposit_seq")
     private Long id;
 
     public Long getId() {
@@ -25,11 +25,18 @@ public class Deposit {
     }
 
     @NotNull
-    private Integer interest_rate;
+    private Integer rate;
     @NotNull
-    private Date closing_date;
-    //@NotBlank
-    private Boolean prolongation;
+    private Integer term;
+
+    public Deposit() {
+    }
+
+    public Deposit(Long id, Integer rate, Integer term) {
+        this.id = id;
+        this.rate = rate;
+        this.term = term;
+    }
 
     @ManyToOne(
             fetch = FetchType.LAZY,
@@ -47,27 +54,19 @@ public class Deposit {
         this.account = account;
     }
 
-    public Integer getInterest_rate() {
-        return interest_rate;
+    public Integer getRate() {
+        return rate;
     }
 
-    public void setInterest_rate(Integer interest_rate) {
-        this.interest_rate = interest_rate;
+    public void setRate(Integer rate) {
+        this.rate = rate;
     }
 
-    public Date getClosing_date() {
-        return closing_date;
+    public Integer getTerm() {
+        return term;
     }
 
-    public void setClosing_date(Date closing_date) {
-        this.closing_date = closing_date;
-    }
-
-    public Boolean getProlongation() {
-        return prolongation;
-    }
-
-    public void setProlongation(Boolean prolongation) {
-        this.prolongation = prolongation;
+    public void setTerm(Integer term) {
+        this.term = term;
     }
 }

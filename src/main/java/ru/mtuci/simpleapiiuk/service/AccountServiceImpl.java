@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import ru.mtuci.simpleapiiuk.dao.AccountRepository;
 import ru.mtuci.simpleapiiuk.model.Account;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

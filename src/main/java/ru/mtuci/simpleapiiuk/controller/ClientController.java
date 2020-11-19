@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.mtuci.simpleapiiuk.model.Client;
 import ru.mtuci.simpleapiiuk.service.AccountService;
 import ru.mtuci.simpleapiiuk.service.ClientService;
-//import ru.mtuci.simpleapiiuk.service.DepositService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -25,13 +24,11 @@ public class ClientController {
 
     private final ClientService clientService;
     private final AccountService accountService;
-//    private final DepositService depositService;
 
     @Autowired
-    public ClientController(ClientService clientService, AccountService accountService) { //, DepositService depositService
+    public ClientController(ClientService clientService, AccountService accountService) {
         this.clientService = clientService;
         this.accountService = accountService;
-//        this.depositService = depositService;
       }
 
     @GetMapping(value = "/{id}")
