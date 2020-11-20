@@ -16,9 +16,8 @@ env:
 
 addons:
   sonarcloud:
-    organization: "iuliiakurakina"
-    token:
-      secure: "$SONAR_TOKEN"
+    organization: "IuliiaKurakina"
+    token: $SONAR_TOKEN
 
 script:
 - "./mvnw clean install -B"
