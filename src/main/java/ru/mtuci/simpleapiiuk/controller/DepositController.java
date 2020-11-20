@@ -6,16 +6,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.mtuci.simpleapiiuk.model.Account;
+import ru.mtuci.simpleapiiuk.model.Client;
 import ru.mtuci.simpleapiiuk.model.Deposit;
 import ru.mtuci.simpleapiiuk.service.AccountService;
-import ru.mtuci.simpleapiiuk.service.ClientService;
 import ru.mtuci.simpleapiiuk.service.DepositService;
 
 import javax.validation.Valid;
-import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @RestController
@@ -25,39 +24,19 @@ public class DepositController {
 
     private final DepositService depositService;
     private final AccountService accountService;
-    private final ClientService clientService;
+
 
     @Autowired
-    public DepositController(DepositService depositService, AccountService accountService, ClientService clientService) {
+    public DepositController(DepositService depositService, AccountService accountService) {
         this.depositService = depositService;
         this.accountService = accountService;
-        this.clientService = clientService;
     }
 
-    @PostMapping("/{id}") // condition: existing client
-    public ResponseEntity<Deposit> create(@RequestBody @Valid Deposit deposit, @PathVariable Long id) {
-
-        Account optionalAccount = accountService.get(id);
-        deposit.setAccount(optionalAccount);
+    @PostMapping()
+    public ResponseEntity<Deposit> create(@RequestBody @Valid Deposit deposit) {
         Deposit savedDeposit = depositService.save(deposit);
 
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(savedDeposit.getId()).toUri();
-        return ResponseEntity.created(location).body(savedDeposit);
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Deposit> update(@RequestBody @Valid Deposit deposit, @PathVariable Long id) {
-
-        Account optionalAccount = accountService.get(depositService.get(id).getAccount().getId());
-
-        deposit.setAccount(optionalAccount);
-        deposit.setId(id);
-        Deposit savedDeposit = depositService.save(deposit);
-
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(savedDeposit.getId()).toUri();
-        return ResponseEntity.created(location).body(savedDeposit);
+        return ResponseEntity.of(Optional.of(savedDeposit));
     }
 
     @GetMapping
@@ -77,5 +56,20 @@ public class DepositController {
     public Deposit get(@PathVariable("id") Long id) {
         log.info("get" + id);
         return depositService.get(id);
+    }
+
+    @PostMapping("/setAccountToDeposit")
+    public ResponseEntity<Boolean> setAccountToDeposit(Long depositId, Long accountId) {
+        Deposit deposit = depositService.get(depositId);
+        Account account = accountService.get(accountId);
+
+        if (deposit == null || account == null) {
+            return ResponseEntity.of(Optional.of(false));
+        }
+
+        deposit.setAccount(account);
+        depositService.save(deposit);
+
+        return ResponseEntity.of(Optional.of(true));
     }
 }

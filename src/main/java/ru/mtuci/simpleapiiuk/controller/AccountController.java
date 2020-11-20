@@ -6,16 +6,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.mtuci.simpleapiiuk.model.Account;
 import ru.mtuci.simpleapiiuk.model.Client;
 import ru.mtuci.simpleapiiuk.service.AccountService;
 import ru.mtuci.simpleapiiuk.service.ClientService;
-import ru.mtuci.simpleapiiuk.service.DepositService;
 
 import javax.validation.Valid;
-import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 
 @Slf4j
@@ -26,13 +24,11 @@ public class AccountController {
 
     private final AccountService accountService;
     private final ClientService clientService;
-    private final DepositService depositService;
 
     @Autowired
-    public AccountController(AccountService accountService, ClientService clientService, DepositService depositService) {
+    public AccountController(AccountService accountService, ClientService clientService) {
         this.accountService = accountService;
         this.clientService = clientService;
-        this.depositService = depositService;
     }
 
     @GetMapping(value = "/{id}")
@@ -47,20 +43,6 @@ public class AccountController {
         return accountService.getAll();
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Account> update(@RequestBody @Valid Account account, @PathVariable Long id) {
-
-        Client optionalClient = clientService.get(accountService.get(id).getClient().getId());
-
-        account.setClient(optionalClient);
-        account.setId(id);
-        Account savedAccount = accountService.save(account);
-
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(savedAccount.getId()).toUri();
-        return ResponseEntity.created(location).body(savedAccount);
-    }
-
     @DeleteMapping("/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void delete(@PathVariable("id") Long id) {
@@ -69,15 +51,25 @@ public class AccountController {
         accountService.delete(id);
     }
 
-    @PostMapping("/{id}") // condition: existing client
-    public ResponseEntity<Account> create(@RequestBody @Valid Account account, @PathVariable Long id) {
-
-        Client optionalClient = clientService.get(id);
-        account.setClient(optionalClient);
+    @PostMapping()
+    public ResponseEntity<Account> create(@RequestBody @Valid Account account) {
         Account savedAccount = accountService.save(account);
 
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(savedAccount.getId()).toUri();
-        return ResponseEntity.created(location).body(savedAccount);
+        return ResponseEntity.of(Optional.of(savedAccount));
+    }
+
+    @PostMapping("/setClientToAccount")
+    public ResponseEntity<Boolean> setClientToAccount(Long clientId, Long accountId) {
+        Client client = clientService.get(clientId);
+        Account account = accountService.get(accountId);
+
+        if (client == null || account == null) {
+            return ResponseEntity.of(Optional.of(false));
+        }
+
+        account.setClient(client);
+        accountService.save(account);
+
+        return ResponseEntity.of(Optional.of(true));
     }
 }

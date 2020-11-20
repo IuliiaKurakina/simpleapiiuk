@@ -15,19 +15,15 @@ public class Deposit {
     @SequenceGenerator(name = "deposit_seq", sequenceName = "deposit_seq", allocationSize = 1, initialValue = START_SEQ)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "deposit_seq")
     private Long id;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     @NotNull
     private Integer rate;
     @NotNull
     private Integer term;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "account_id")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private Account account;
 
     public Deposit() {
     }
@@ -38,13 +34,13 @@ public class Deposit {
         this.term = term;
     }
 
-    @ManyToOne(
-            fetch = FetchType.LAZY,
-            optional = false
-    )
-    @JoinColumn(name = "account_id")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private Account account;
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Account getAccount() {
         return account;

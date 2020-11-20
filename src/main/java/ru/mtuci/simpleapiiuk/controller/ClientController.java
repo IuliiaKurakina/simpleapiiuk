@@ -4,17 +4,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.mtuci.simpleapiiuk.model.Client;
-import ru.mtuci.simpleapiiuk.service.AccountService;
 import ru.mtuci.simpleapiiuk.service.ClientService;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-
-import java.util.List;
 import javax.validation.Valid;
-import java.net.URI;
+import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @RestController
@@ -23,13 +20,11 @@ public class ClientController {
     public static final String REST_URL = "/api/v1/clients";
 
     private final ClientService clientService;
-    private final AccountService accountService;
 
     @Autowired
-    public ClientController(ClientService clientService, AccountService accountService) {
+    public ClientController(ClientService clientService) {
         this.clientService = clientService;
-        this.accountService = accountService;
-      }
+    }
 
     @GetMapping(value = "/{id}")
     public Client get(@PathVariable("id") Long id) {
@@ -46,10 +41,8 @@ public class ClientController {
     @PostMapping
     public ResponseEntity<Client> create(@Valid @RequestBody Client client) {
         Client savedClient = clientService.save(client);
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(savedClient.getId()).toUri();
 
-        return ResponseEntity.created(location).body(savedClient);
+        return ResponseEntity.of(Optional.of(savedClient));
     }
 
     @DeleteMapping("/{id}")
@@ -57,6 +50,6 @@ public class ClientController {
     public void delete(@PathVariable("id") Long id) {
         log.info("delete" + id);
         clientService.delete(id);
-        System.out.println("Delete!" + id);
+//        System.out.println("That's science, bitch!" + id);
     }
 }

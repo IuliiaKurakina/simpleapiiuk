@@ -1,7 +1,6 @@
 package ru.mtuci.simpleapiiuk.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -23,6 +22,20 @@ public class Account {
     private Integer number;
     @NotNull
     private Integer amount;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "client_id")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private Client client;
+
+    public Account() {
+    }
+
+    public Account(Long id, Integer number, Integer amount) {
+        this.id = id;
+        this.number = number;
+        this.amount = amount;
+    }
 
     public Long getId() {
         return id;
@@ -48,38 +61,22 @@ public class Account {
         this.amount = amount;
     }
 
-    public Account() {
-    }
-    public Account(Long id, Integer number, Integer amount) {
-        this.id = id;
-        this.number = number;
-        this.amount = amount;
-    }
-
-    @ManyToOne(
-            fetch = FetchType.LAZY,
-            optional = false
-    )
-    @JoinColumn(name = "client_id")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private Client client;
-    @OneToMany(
-            mappedBy = "account",
-            cascade = CascadeType.ALL
-    )
-
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Set<Deposit> deposits = new HashSet<>();
 
     public Client getClient() {
         return client;
     }
+
     public void setClient(Client client) {
         this.client = client;
     }
+
     public Set<Deposit> getDeposits() {
         return deposits;
     }
+
     public void setDeposits(Set<Deposit> deposits) {
         this.deposits = deposits;
         for (Deposit d : deposits) {
