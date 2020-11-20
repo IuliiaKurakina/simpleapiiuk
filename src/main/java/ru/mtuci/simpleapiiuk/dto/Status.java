@@ -1,10 +1,13 @@
 package ru.mtuci.simpleapiiuk.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-
-@Data
-@AllArgsConstructor
 public class Status {
-    private String hostName;
+    private final String hostName;
+
+    public Status(String hostName) {
+        this.hostName = hostName;
+    }
+
+    public String getHostName() {
+        return hostName;
+    }
 }

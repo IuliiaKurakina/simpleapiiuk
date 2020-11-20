@@ -9,7 +9,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Data
 @Table(name = "clients")
 public class Client {
     public static final int START_SEQ = 1;
@@ -30,12 +29,10 @@ public class Client {
         this.name = name;
         this.phone = phone;
     }
-    @OneToMany(
-            mappedBy = "client",
-            cascade = CascadeType.ALL
-    )
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Set<Account> accounts = new HashSet<>();
+
     public Long getId() {
         return id;
     }
@@ -54,22 +51,6 @@ public class Client {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-    public Set<Account> getAccounts() {
-        return accounts;
-    }
-
-    public void setAccounts(Set<Account> accounts) {
-        this.accounts = accounts;
-        for (Account a : accounts) {
-            a.setClient(this);
-        }
-    }
 }
-
-//    @ManyToMany(fetch = FetchType.LAZY)
-//    @JoinTable(name = "client_account",
-//            joinColumns = { @JoinColumn(name = "client_id") },
-//            inverseJoinColumns = { @JoinColumn(name = "account_id") })
-//    private List<Account> accounts = new ArrayList<>();
 
 

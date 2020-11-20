@@ -72,20 +72,4 @@ public class Account {
     public void setClient(Client client) {
         this.client = client;
     }
-
-    public Set<Deposit> getDeposits() {
-        return deposits;
-    }
-
-    public void setDeposits(Set<Deposit> deposits) {
-        this.deposits = deposits;
-        for (Deposit d : deposits) {
-            d.setAccount(this);
-        }
-    }
 }
-//@ManyToMany(fetch = FetchType.LAZY)
-//    @JoinTable(name = "client_account",
-//            joinColumns = {@JoinColumn(name = "client_id")},
-//            inverseJoinColumns = {@JoinColumn(name = "account_id")})
-//    private List<Account> account = new ArrayList<>();
