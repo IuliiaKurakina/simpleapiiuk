@@ -16,7 +16,7 @@ env:
 
 addons:
   sonarcloud:
-    organization: "IuliiaKurakina"
+    organization: "iuliiakurakina"
     token: $SONAR_TOKEN
 
 script:
