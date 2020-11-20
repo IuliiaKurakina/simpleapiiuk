@@ -2,31 +2,39 @@ dist: trusty
 jdk: oraclejdk8
 language: java
 services:
-  - postgresql
-  - docker
+- postgresql
+- docker
 before_install:
-  - chmod +x mvnw
+- chmod +x mvnw
 env:
   global:
-    - secure: "OWV9/UnIYMHHdZLaxe/LANZhbhVZvuqhuN/I4WrCOTJISkv3nbLaw5vfAaUjjINVVm8tEETWebtgyPMhBGrHUOs+b+LVg8XpOWPAdvS0CyXZ2YjD1XvQpK/nmOW/W0iQ1fh8E1MEKFN7EUQqaHPe1nd8ySq+ZZbCylu8dsf6YLXLbLGfATQlPnfidoRTw5jGTUlr8EYxXdd+05opI8l7eEh2VCwq/NqNsnVLSWb2ZIaEJNzk2Cd3z+n/7baxW5xP17bYkDO63FBIyJP1QtNpmM8wjDnNl0gwBYINr5xAfJbFkHQXMtDBJwxip65gWdz3EObnvJg/1qllN8tB4anrVrM4OaP4tupjEON4HdUV3toKg8X/7k1oHJf/04nxdxaqgOhNviQqldv9QEXxLeWv/dwZMcEX++TYqCbkhSNR48reMX7kVkswH+g5DiEb96aUShyHzP2YtY/1jPxjKxeV0ODCDElmobQuSQaJyn6n4M2wLeP/yH8zh9UGPXr+m6n4d+5rddFBCnh2v0zLKH0KoTGDK9m9RJOssd2Rcbri+Avm4S4FyKAglDYm1DEvyOjXKhB5liaqieP0ARPf768iziXkGlmnR8N4GIzdKcse5ELoK2wqtORmsqASFn3HNaRUkjd09I3g4YWV6H5AQcFvaKKDwN+7opOLqOgNyUqk0xU="
-    - secure: "bD9uYz3Pa+chH5VwHSU6KrCrhScxE/C/DqaSPZ+lzPkDbj176f2tKMQhyYOLdFSp9NCfaS5kbXeWHTChpNeBzm3RMmB837Y+HhJBx4SP6mwZsutQJzHoSFFw80l839hg/efRbDrbeNxI/4neh6/XVhDhyYj2k7VLQ5glCxGU0WyIWBr45cv7eJFBVS8NTMa+ueRoIgjpWlxNhfsDI45VDJCCZPzzlCdJcdW3qsiD0TD5e0LDKgkT5uez3Ao38y+kIB7mmheY8SoNRDSXFSmn4DWxTRz+797sPXosnm7LPNQBrnMYaKsSkozwaM6SXm0UTnh4w8Kwn4OPaBM7C35e1j8mXqoqYdYFb2AFGxyUjiDnxd5O7Oq2BuAJ7oknff/jAv0ApdUIsfcv8W46c843mlhh/PmPhEZjj+etbu3pB5j29AIkNFXWlmWY9VIqtO23P61xSIXLV051xoKNos+EzqrZNE3QZIi+zqizp0SPMw3jwusLXAcjK2QeilV5XfEmrTm5kExlyEfmmAutjtRXX2w0Cc4aGPh1NA81IGlZLdxphWXTYJ1ooXujnlQXyCUgKmyUYmecZlr1yKCFGtdF/ScHHl1Yh/tqeHeze1WIgv3Ceb/+bLeBEtQeZKNbXcUJ1rOkOkwhDxMESJ0fgMv2Uuu2XTJXkSpmNJfktNadW90="
-    - secure: "fY0FdV4022ggWF+Fmoxp8rTVIjTWx+WrFPYYA9R5eBSsgCy+I/xnLnDH1tSZWJl7R0kHN6suBM61RTLgr5k0Vr0mrFXPLRAtpLA2oRbyl7j92LrY42WIQve13/nG0bBu3/yP87fzVmzc5hcRdtIPUa2qR3+bUAJqgDFX2NQdcpkUzO+EMUVw443HDq8gP0xS6olCd0FgV980B1ymLFunfew6kz+5dDEvrop3jKEvkglArP7f5clSv1ecvJ7FGXMo1nOez47p/v11eb7r4akBGC+2x34G8BMOFt750nFVLTAmXmszLtN5UoUdXl8DLRBxckJVg9ouSR2w2gKmc/QYFiYQ520GCcnArAnyqxX3u0fLvi12dgsbcL8hKpj2EQMqOv/SBBYLryq+y5u0mWx/JPB9lIxLwDsQ5964YQUjUyVOEK7u2Q/Ax3ohzywe+zncZKnfiC99YghtDiViGqJtM12ifeADSKewEYzVbgC/hPKMBGQv2aXZXe91UccdQoebWrYtpsmpAvxD/tYMXNM3IXcMDMos+k14TQCFZUp9Nn2TD+a3ivzsdLVyObvhBboLXMJi6z0qXv+vJt8ktht3+uckRqSaNtk5mf0xwwxj9pO8tXSINgHfclhI0W/XiNMZ0b9ixGvEuccXBjbjPDbpl5AKIhgXYS7F3FWSSJPx/SA="
-    - COMMIT=${TRAVIS_COMMIT::7}
+  - secure: OWV9/UnIYMHHdZLaxe/LANZhbhVZvuqhuN/I4WrCOTJISkv3nbLaw5vfAaUjjINVVm8tEETWebtgyPMhBGrHUOs+b+LVg8XpOWPAdvS0CyXZ2YjD1XvQpK/nmOW/W0iQ1fh8E1MEKFN7EUQqaHPe1nd8ySq+ZZbCylu8dsf6YLXLbLGfATQlPnfidoRTw5jGTUlr8EYxXdd+05opI8l7eEh2VCwq/NqNsnVLSWb2ZIaEJNzk2Cd3z+n/7baxW5xP17bYkDO63FBIyJP1QtNpmM8wjDnNl0gwBYINr5xAfJbFkHQXMtDBJwxip65gWdz3EObnvJg/1qllN8tB4anrVrM4OaP4tupjEON4HdUV3toKg8X/7k1oHJf/04nxdxaqgOhNviQqldv9QEXxLeWv/dwZMcEX++TYqCbkhSNR48reMX7kVkswH+g5DiEb96aUShyHzP2YtY/1jPxjKxeV0ODCDElmobQuSQaJyn6n4M2wLeP/yH8zh9UGPXr+m6n4d+5rddFBCnh2v0zLKH0KoTGDK9m9RJOssd2Rcbri+Avm4S4FyKAglDYm1DEvyOjXKhB5liaqieP0ARPf768iziXkGlmnR8N4GIzdKcse5ELoK2wqtORmsqASFn3HNaRUkjd09I3g4YWV6H5AQcFvaKKDwN+7opOLqOgNyUqk0xU=
+  - secure: bD9uYz3Pa+chH5VwHSU6KrCrhScxE/C/DqaSPZ+lzPkDbj176f2tKMQhyYOLdFSp9NCfaS5kbXeWHTChpNeBzm3RMmB837Y+HhJBx4SP6mwZsutQJzHoSFFw80l839hg/efRbDrbeNxI/4neh6/XVhDhyYj2k7VLQ5glCxGU0WyIWBr45cv7eJFBVS8NTMa+ueRoIgjpWlxNhfsDI45VDJCCZPzzlCdJcdW3qsiD0TD5e0LDKgkT5uez3Ao38y+kIB7mmheY8SoNRDSXFSmn4DWxTRz+797sPXosnm7LPNQBrnMYaKsSkozwaM6SXm0UTnh4w8Kwn4OPaBM7C35e1j8mXqoqYdYFb2AFGxyUjiDnxd5O7Oq2BuAJ7oknff/jAv0ApdUIsfcv8W46c843mlhh/PmPhEZjj+etbu3pB5j29AIkNFXWlmWY9VIqtO23P61xSIXLV051xoKNos+EzqrZNE3QZIi+zqizp0SPMw3jwusLXAcjK2QeilV5XfEmrTm5kExlyEfmmAutjtRXX2w0Cc4aGPh1NA81IGlZLdxphWXTYJ1ooXujnlQXyCUgKmyUYmecZlr1yKCFGtdF/ScHHl1Yh/tqeHeze1WIgv3Ceb/+bLeBEtQeZKNbXcUJ1rOkOkwhDxMESJ0fgMv2Uuu2XTJXkSpmNJfktNadW90=
+  - secure: fY0FdV4022ggWF+Fmoxp8rTVIjTWx+WrFPYYA9R5eBSsgCy+I/xnLnDH1tSZWJl7R0kHN6suBM61RTLgr5k0Vr0mrFXPLRAtpLA2oRbyl7j92LrY42WIQve13/nG0bBu3/yP87fzVmzc5hcRdtIPUa2qR3+bUAJqgDFX2NQdcpkUzO+EMUVw443HDq8gP0xS6olCd0FgV980B1ymLFunfew6kz+5dDEvrop3jKEvkglArP7f5clSv1ecvJ7FGXMo1nOez47p/v11eb7r4akBGC+2x34G8BMOFt750nFVLTAmXmszLtN5UoUdXl8DLRBxckJVg9ouSR2w2gKmc/QYFiYQ520GCcnArAnyqxX3u0fLvi12dgsbcL8hKpj2EQMqOv/SBBYLryq+y5u0mWx/JPB9lIxLwDsQ5964YQUjUyVOEK7u2Q/Ax3ohzywe+zncZKnfiC99YghtDiViGqJtM12ifeADSKewEYzVbgC/hPKMBGQv2aXZXe91UccdQoebWrYtpsmpAvxD/tYMXNM3IXcMDMos+k14TQCFZUp9Nn2TD+a3ivzsdLVyObvhBboLXMJi6z0qXv+vJt8ktht3+uckRqSaNtk5mf0xwwxj9pO8tXSINgHfclhI0W/XiNMZ0b9ixGvEuccXBjbjPDbpl5AKIhgXYS7F3FWSSJPx/SA=
+  - secure: Cyx6JB8KOhlbmgcNgxC5p5+sMZP/B2fdAQf3rxd8B6SDLCNRRlHncK1NMsbvlVxE02dPd6PJBlhw0hX67nnlnYvkuUA2MX33tqLK2dLsJCZV56IfxgaRDI3jV0kEqVB1RtA/hrOioYkpN4V5gORIvzr6pzO2xjwsfMe+1gBFpOmYi6y7NEkHdd8QBcfM/J7MPQK0Qt7LKSHbNHND1Jek5U8Gli4gC0BpFtyCEqR4IPRrzatE9tSO6U/Rwsz//Q37iRFRJgnGN8zPUXgeX5dz92FxDdQxdK7t4d4/B4WvmqUXiIwo6doIWBfY+dEjJIA5Z4pdrQel+5AAVB6KS1TwXiD8Q0/G7Et98I9u3zQmYdbMPqXviq4Y3laGravBsz0PwKklYH6wPv9lnpY8JuKF5psnnAig4DUEJx+18L+hTTVvJaviGEgUYJ4T5Fz5KHz0V0ak4r/9u2u5Y1Ow16zpgad+3ipu25+4AfOlWvBveICc9GyBo2XSJHGsQPlknyG362QZyke6vsXkHePotb80caZ/4Fag/EoyMyMOXHoHE70R5S/tuVSG4cFK6sZcKiXVqnJ2xblyFAh7f2rGTGtKzhjIAva+uZfE8Wdd/4GLaDgaCtlhK55CfqoF2k4SSXjdCWY1r/QSZXJa/jVz0SNN+BB3Ihnnfgo6+Il24neYEm0=
+  - COMMIT=${TRAVIS_COMMIT::7}
+
+addons:
+  sonarcloud:
+    organization: "IuliiaKurakina"
+    token:
+      secure: $SONAR_TOKEN
 
 script:
-  - "./mvnw clean install -B"
+- "./mvnw clean install -B"
+- "./mvnw clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar"
+
 after_success:
-  - docker login -u $DOCKER_USER -p $DOCKER_PASS
-  - export TAG=`if [ "$TRAVIS_BRANCH" == "hard" ]; then echo "latest"; else echo "$TRAVIS_BRANCH";
-    fi`
-  - export IMAGE_NAME=35874569/my-docker-repo
-  - docker build -t $IMAGE_NAME:latest .
-  - docker tag $IMAGE_NAME:latest $IMAGE_NAME:$TAG
-  - docker push $IMAGE_NAME:$TAG
+- docker login -u $DOCKER_USER -p $DOCKER_PASS
+- export TAG=`if [ "$TRAVIS_BRANCH" == "hard" ]; then echo "latest"; else echo "$TRAVIS_BRANCH";
+  fi`
+- export IMAGE_NAME=35874569/my-docker-repo
+- docker build -t $IMAGE_NAME:latest .
+- docker tag $IMAGE_NAME:latest $IMAGE_NAME:$TAG
+- docker push $IMAGE_NAME:$TAG
 deploy:
   provider: heroku
   on:
     branch: hard
-  api_key: $HEROKU_API_KEY
+  api_key: "$HEROKU_API_KEY"
   app: simpleapiiuk
-
