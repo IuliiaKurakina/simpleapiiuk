@@ -62,5 +62,5 @@
 3. Получить hostname:
 - curl GET https://simpleapiiuk.herokuapp.com/api/v1/status
 
-
+[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-black.svg)](https://sonarcloud.io/dashboard?id=ru.mtuci%3Asimpleapiiuk)
 ![Build Status](https://travis-ci.com/IuliiaKurakina/simpleapiiuk.svg?branch=hard)
