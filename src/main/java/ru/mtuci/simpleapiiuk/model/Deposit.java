@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@Table(name = "deposits")
 public class Deposit {
     public static final int START_SEQ = 1;
 

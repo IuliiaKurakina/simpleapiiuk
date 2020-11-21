@@ -61,10 +61,6 @@ public class Account {
         this.amount = amount;
     }
 
-    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private Set<Deposit> deposits = new HashSet<>();
-
     public Client getClient() {
         return client;
     }
@@ -72,4 +68,10 @@ public class Account {
     public void setClient(Client client) {
         this.client = client;
     }
+
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Set<Deposit> deposits = new HashSet<>();
+
+
 }
