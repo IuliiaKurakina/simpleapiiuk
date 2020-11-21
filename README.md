@@ -1,66 +1,109 @@
 ﻿﻿## Технология разработки программного обеспечения
-## Лабораторная работа №1: создание микросервиса на Spring Boot с базой данных
+## Лабораторная работа по улучшению проекта simpleapiiuk
 ## Куракина Юлия Владимировна МАС2031 
+#### Hard - Требования к проекту:
+- Подключение SonarQube к проекту, и запуск его на этапе сборки. 
+- Реализация в API не менее 3-х таблиц и связей между ними.
+- Написание unit-тестов на слой сервисов и контроллеров, покрытие тестами - не менее 80%.
 
-#### Hard - Реализация в API 3-х таблиц и связей между ними через Hibernate ORM @OneToMany, @ManyToOne.
-
-1. Получить список всех клиентов: 
-- curl GET 'http://localhost:8080/api/v1/clients'
-- curl GET 'http://localhost:8080/api/v1/accounts'
-- curl GET 'http://localhost:8080/api/v1/deposits'
-2. Получить запись по id: 
-- curl GET http://localhost:8080/api/v1/clients/{id}
-- curl GET http://localhost:8080/api/v1/accounts/{id}
-- curl GET http://localhost:8080/api/v1/deposits/{id}
-3. Добавить новую запись: 
-- curl SAVE http://localhost:8080/api/v1/clients 
-- curl SAVE http://localhost:8080/api/v1/accounts  / добавление к существующему родительскому id
-- curl SAVE http://localhost:8080/api/v1/deposits  / добавление к существующему родительскому id
-4. Удалить имеющуюся запись: 
-- curl POST http://localhost:8080/api/v1/clients/{id}
-- curl POST http://localhost:8080/api/v1/accounts/{id}
-- curl POST http://localhost:8080/api/v1/deposits/{id}
-5. Обновить имеющуюся запись: 
-- curl PUT http://localhost:8080/api/v1/accounts/{id}
-- curl PUT http://localhost:8080/api/v1/deposits/{id}
-6. Получить hostname: 
-- curl GET http://localhost:8080/api/v1/status 
-7. Пример запроса:
-```
-{
-	"date_of_birth": "2000-12-01",
-	"passport": "4614 501578",
-	"surname": "Ковалева",
-	"name": "Алёна",
-	"phone": "7903548878",
-	"accounts": [
-		{
-			"opening_date": "2000-12-01",
-			"deposit_amount": 100,
-			"deposits": [
-				{
-					"closing_date": "2000-12-01",
-					"interest_rate": 4,
-					"prolongation": true
-				}
-			]
-		}
-	]
-}
-```
-[Пример запроса в Insomnia](https://drive.google.com/drive/folders/1hO3hkDz8sVtnm3IPv-ZMsbI93jKhiI5y?usp=sharing)
-
-Знакомство с CI/CD и его реализацией на примере Travis CI и Heroku. Ссылка на приложение:
-1. Получить все записи:
-- curl GET https://simpleapiiuk.herokuapp.com/api/v1/clients
-- curl GET https://simpleapiiuk.herokuapp.com/api/v1/accounts
-- curl GET https://simpleapiiuk.herokuapp.com/api/v1/deposits
-2. Получить запись по id:
-- curl GET https://simpleapiiuk.herokuapp.com/api/v1/clients/209
-- curl GET https://simpleapiiuk.herokuapp.com/api/v1/accounts/210
-- curl GET https://simpleapiiuk.herokuapp.com/api/v1/deposits/211
-3. Получить hostname:
-- curl GET https://simpleapiiuk.herokuapp.com/api/v1/status
+1. Получить hostname: 
+    - curl GET http://localhost:8080/api/v1/status
+2. Список запросов к api клиента:
+    - Добавить клиента
+    ```shell script
+    curl --request POST \
+      --url http://localhost:8080/api/v1/clients \
+      --header 'Content-Type: application/json' \
+      --data '{
+    	"name": "Вася", 
+    	"phone": "355-55-15"
+    }'
+    ```
+    - Получить клиента по {id = 1}
+    ```shell script
+    curl --request GET \
+      --url http://localhost:8080/api/v1/clients/1
+    ```
+    - Получить всех клиентов
+    ```shell script
+    curl --request GET \
+      --url http://localhost:8080/api/v1/clients
+    ```
+    - Удалить клиента по {id = 1}
+    ```shell script
+    curl --request DELETE \
+      --url http://localhost:8080/api/v1/clients/1
+    ```
+3. Список запросов к api счетов:
+    - Перепривязать счет к клиенту {clientId=2 accountId=1}
+    ```shell script
+    curl --request POST \
+      --url 'http://localhost:8080/api/v1/accounts/setClientToAccount?clientId=2&accountId=1' \
+      --header 'Content-Type: application/json'
+    ```
+    - Добавить счет к клиенту с {id = 1}
+    ```shell script
+    curl --request POST \
+      --url http://localhost:8080/api/v1/accounts \
+      --header 'Content-Type: application/json' \
+      --data '{
+    	"number": 7231,
+    	"amount": 163,
+    	"client": {
+    							"id" : 1
+    						}
+    }'
+    ```
+    - Получить счет по {id = 1}
+    ```shell script
+    curl --request GET \
+      --url http://localhost:8080/api/v1/accounts/2
+    ```
+    - Получить все счета 
+    ```shell script
+    curl --request GET \
+      --url http://localhost:8080/api/v1/accounts
+    ```
+    - Удалить счет {id = 1}
+    ```shell script
+    curl --request DELETE \
+      --url http://localhost:8080/api/v1/accounts/1
+    ```
+3. Список запросов к api вкладов:
+    - Перепривязать вклад к счету {accountId=2 depositId1}
+    ```shell script
+    curl --request POST \
+      --url 'http://localhost:8080/api/v1/deposits/setAccountToDeposit?accountId=2&depositId=1&=' \
+      --header 'Content-Type: application/json'
+    ```
+    - Добавить вклад
+    ```shell script
+    curl --request POST \
+      --url http://localhost:8080/api/v1/deposits \
+      --header 'Content-Type: application/json' \
+      --data '{
+    	"rate": 2,
+    	"term": 2,
+    	"account": {
+    							"id" : 1
+    						}
+    }'
+    ```
+    - Получить все вклады
+    ```shell script
+    curl --request GET \
+      --url http://localhost:8080/api/v1/deposits
+    ```
+    - Получить вклад {id = 1}
+    ```shell script
+    curl --request GET \
+      --url http://localhost:8080/api/v1/deposits/1
+    ```
+    - Удалить вклад {id = 1}
+    ```shell script
+    curl --request DELETE \
+      --url http://localhost:8080/api/v1/deposits/1
+    ```
 
 [![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-black.svg)](https://sonarcloud.io/dashboard?id=ru.mtuci%3Asimpleapiiuk)
 ![Build Status](https://travis-ci.com/IuliiaKurakina/simpleapiiuk.svg?branch=hard)
